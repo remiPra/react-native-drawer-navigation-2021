@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { useState } from 'react';
-import { View, Text,Button, StyleSheet, Image } from 'react-native';
+import { View, Text,Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar } from 'react-native-elements';
 
@@ -18,8 +18,8 @@ function DrawerContent({navigation}) {
     return (
         <SafeAreaView style={styles.safeContainer}>
 
-            <View style={styles.drawerContainer}>
-                
+            <View  style={styles.drawerContainer}>
+                <Text style={styles.h1}>Mes Planches Divinatoires</Text>
                 <Avatar
                 size="xlarge"
                     rounded
@@ -28,15 +28,19 @@ function DrawerContent({navigation}) {
 
 
             </View>
-            <View>
+            <View style={{height:500}}>
                 {items.map(
                     (object) => {
                         return (
-                            <View key={object.id}>
-                                <Button
+                            <View    style={{color:'navy',paddingTop:10}} key={object.id}>
+                                <TouchableOpacity style={styles.button}
                                     onPress={() => navigation.navigate(object.link)}
-                                    title={object.name}
-                                />
+                                >
+                                    <Text>{object.name} </Text>
+
+                                </TouchableOpacity>
+                                    
+                            
                             </View>
                         )
                     }
@@ -49,19 +53,34 @@ function DrawerContent({navigation}) {
 
 
 const styles = StyleSheet.create({
+    h1:{textAlign:'center',
+        marginTop:10,
+        marginBottom:20,
+        color:'white',
+        fontSize:20,
+        fontWeight:'bold'
+    },
     text: {
-        color: 'black',
+        color: 'white',
     },
     safeContainer:{
         flexDirection:'column',
         // alignItems:'center',
         // justifyContent:'center',
-        width:'100%'
+        width:'100%',
+        //backgroundColor:"navy",
+        borderBottomColor:"white",
+        borderBottomWidth:5
     },
     drawerContainer: {
+    
         padding: 30,
         alignItems:'center',
-        position: 'relative'
+        position: 'relative',
+        backgroundColor:"navy"
+    },
+    button:{
+        backgroundColor:'white',padding:20,borderRadius:20,fontSize:20,fontWeight:'bold'
     }
 })
 export default DrawerContent

@@ -145,7 +145,7 @@ function Planches({ navigation }) {
       </Overlay>
       <ScrollView minimumZoomScale={1} maximumZoomScale={5} style={{ width: '100%' }}>
         {(tasks != null) && (tasks?.map(task =>
-        ((task.id != "" && (search == "" || task.name.includes(search))) &&
+        ((task.id != "" && (search == "" || task.title.toLowerCase().includes(search.toLowerCase()))) &&
           <View style={{
             position: 'relative', flex: 1,
             width: '100%', height: 300, marginTop: 50, textAlign: 'center',
